@@ -1,0 +1,68 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local lp = game.Players.LocalPlayer
+
+local Window = Fluent:CreateWindow{
+    Title = "Blox Fruits Services",
+    SubTitle = "By Drew 0.1",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
+}
+
+local Tabs = {
+    Shop = Window:AddTab{ Title = "Shop", Icon = "" },
+    Fruit = Window:AddTab{ Title = "Fruit", Icon = "" },
+}
+
+local function createButton(tab, title, args, callback)
+    tab:AddButton{
+        Title = title,
+        Description = "",
+        Callback = function()
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+            if callback then
+                callback()
+            end
+        end
+    }
+end
+
+-- Create buttons for the "Shop" tab
+createButton(Tabs.Shop, "Open Fruit Shop", { "GetFruits" }, function()
+    print("Opening Fruit Shop")
+    lp.PlayerGui.Main.FruitShop.Visible = true
+end)
+
+createButton(Tabs.Shop, "Buy Random Fruit", { "Cousin", "Buy" })
+createButton(Tabs.Shop, "Race Reroll", { "BlackbeardReward", "Reroll", "2" })
+createButton(Tabs.Shop, "Stat Refund", { "BlackbeardReward", "Refund", "1" })
+
+Tabs.Shop:AddParagraph({
+    Title = "Fighting Styles",
+    Content = "--------------------"
+})
+
+createButton(Tabs.Shop, "Electric", { "BuyElectro" })
+createButton(Tabs.Shop, "Water Kung Fu", { "BuyFishmanKarate" })
+createButton(Tabs.Shop, "Dragon Breath", { "BlackbeardReward", "DragonClaw", "2" })
+createButton(Tabs.Shop, "SuperHuman", { "BuySuperhuman" })
+createButton(Tabs.Shop, "Death Step", { "BuyDeathStep" })
+createButton(Tabs.Shop, "Sharkman Karate", { "BuySharkmanKarate" })
+createButton(Tabs.Shop, "ElectricClaw", { "BuyElectricClaw" })
+createButton(Tabs.Shop, "Dragon Talon", { "BuyDragonTalon" })
+createButton(Tabs.Shop, "God Human", { "BuyGodhuman" })
+
+local function createButton(tab, title, args, callback)
+    tab:AddButton{
+        Title = title,
+        Description = "",
+        Callback = function()
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+            if callback then
+                callback()
+            end
+        end
+    }
+end
